@@ -22,11 +22,17 @@ class EmployeePayrollData {
     }
     get salary() { return this._salary; }
     set salary(salary) {
+        let salaryRegex = RegExp('^[1-9][0-9]*$');
+        if(salaryRegex.test(salary))
         this._salary = salary;
+        else throw 'salary is incorrect';
     }
     get gender() { return this._gender; }
     set gender(gender) {
+        let genderRegex = RegExp('^M|F$');
+        if(genderRegex.test(gender))
         this._gender = gender;
+        else throw 'invalid gender';
     }
     get startDate() { return this._startDate; }
     set startDate(startDate) {
@@ -45,7 +51,17 @@ class EmployeePayrollData {
 let employeePayrollData = new EmployeePayrollData(1, "Mark", 20000);
 console.log(employeePayrollData.toString());
 employeePayrollData.id = 0;
-employeePayrollData.name = "Jeff";
+try {
+employeePayrollData.name = "john";
 console.log(employeePayrollData.toString());
-let newEmployeePayrollData = new EmployeePayrollData(2, "Terry", 30000, "F", new Date());
+}
+catch(e) {
+    console.error(e);
+}
+try {
+let newEmployeePayrollData = new EmployeePayrollData(2, "Terry", 7000,"M", new Date());
 console.log(newEmployeePayrollData.toString());
+}
+catch(e) {
+    console.error(e);
+}
