@@ -29,14 +29,17 @@ class EmployeePayrollData {
     }
     get gender() { return this._gender; }
     set gender(gender) {
-        let genderRegex = RegExp('^M|F$');
+        let genderRegex = RegExp('^M|F?$');
         if(genderRegex.test(gender))
         this._gender = gender;
         else throw 'invalid gender';
     }
     get startDate() { return this._startDate; }
     set startDate(startDate) {
+        let dateRegex = RegExp('^[a-z]*[A-Z]*/[1-9]{2}/[1-9]{4}$');
+        if(dateRegex.test(startDate))
         this._startDate = startDate;
+        else throw 'invalid date';
     }
 
     //method
